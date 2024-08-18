@@ -38,6 +38,21 @@ public class GiveCMD implements CommandExecutor, TabCompleter
             player.getInventory().addItem(stack);
             player.sendMessage("§aDone!");
             return true;
+        }else if (arg.equalsIgnoreCase("Shards")) {
+            ItemStack[] stacks = new ItemStack[10];
+            stacks[0] = UpgradingItems.HeartUpgradeShard();
+            stacks[1] = UpgradingItems.ShieldUpgradeShard();
+            player.getInventory().addItem(stacks);
+            player.sendMessage("§aDone!");
+            return true;
+        }else if (arg.equalsIgnoreCase("RareElementArmor")) {
+            ItemStack[] stacks = new ItemStack[4];
+            stacks[0] = ElementArmorItems.rareElementHelmet();
+            stacks[1] = ElementArmorItems.rareElementLeggings();
+            stacks[2] = ElementArmorItems.rareElementChestplate();
+            stacks[3] = ElementArmorItems.rareElementBoots();
+            player.getInventory().addItem(stacks);
+            player.sendMessage("§aDone!");
         }
         return false;
     }
@@ -46,8 +61,10 @@ public class GiveCMD implements CommandExecutor, TabCompleter
         final List<String> completions = new ArrayList<>();
         final List<String> commands = new ArrayList<>();
         commands.add("UncommonElementArmor");
+        commands.add("RareElementArmor");
         commands.add("UpgradeTerminal");
-        StringUtil.copyPartialMatches(args[0], (Iterable)commands, (Collection)completions);
+        commands.add("Shards");
+        StringUtil.copyPartialMatches(args[0], commands, completions);
         return completions;
     }
 }
