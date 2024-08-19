@@ -42,6 +42,7 @@ public class GiveCMD implements CommandExecutor, TabCompleter
             ItemStack[] stacks = new ItemStack[10];
             stacks[0] = UpgradingItems.HeartUpgradeShard();
             stacks[1] = UpgradingItems.ShieldUpgradeShard();
+            stacks[2] = UpgradingItems.CleansingUpgradeShard();
             player.getInventory().addItem(stacks);
             player.sendMessage("§aDone!");
             return true;
@@ -57,7 +58,7 @@ public class GiveCMD implements CommandExecutor, TabCompleter
         return false;
     }
 
-    public List<String> onTabComplete( final CommandSender sender,  final Command command,  final String label,  final String[] args) {
+    public List<String> onTabComplete(final CommandSender sender,  final Command command,  final String label,  final String[] args) {
         final List<String> completions = new ArrayList<>();
         final List<String> commands = new ArrayList<>();
         commands.add("UncommonElementArmor");

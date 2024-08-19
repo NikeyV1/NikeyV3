@@ -5,6 +5,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
+import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -18,6 +19,7 @@ public class ElementAPI {
     public static final Component defaultEmoji = Component.text("[۞]").color(NamedTextColor.DARK_GRAY).decoration(TextDecoration.ITALIC, false);
     public static final Component heartEmoji = Component.text("[❤]").color(TextColor.fromHexString("#d94545")).decoration(TextDecoration.ITALIC, false);
     public static final Component shieldEmoji = Component.text("[🛡]").color(TextColor.fromHexString("#227b7d")).decoration(TextDecoration.ITALIC, false);
+    public static final Component cleansingEmoji = Component.text("[✚]").color(TextColor.fromHexString("#881e96")).decoration(TextDecoration.ITALIC, false);
 
     public static String getItemRarity(ItemStack item) {
         if (item.lore().contains((Component.text("Uncommon").color(NamedTextColor.DARK_GREEN).decoration(TextDecoration.ITALIC,false).decoration(TextDecoration.BOLD,true)))) {
@@ -43,6 +45,8 @@ public class ElementAPI {
             return true;
         } else if (isUpgradeShardType(item, "Shield")) {
             return true;
+        }else if (isUpgradeShardType(item, "Cleansing")) {
+            return true;
         }else {
             return false;
         }
@@ -64,13 +68,11 @@ public class ElementAPI {
         return null;
     }
 
-    public static boolean isArmorWithUpgradeSlot(ItemStack item) {
+    public static boolean isElementItem(ItemStack item) {
         ItemMeta meta = item.getItemMeta();
         if (meta != null && meta.hasLore()) {
-            for (Component loreComponent : meta.lore()) {
-                if (loreComponent.equals(defaultEmoji)||loreComponent.equals(shieldEmoji)||loreComponent.equals(heartEmoji)) {
-                    return true;
-                }
+            if (meta.isUnbreakable()) {
+                return true;
             }
         }
         return false;
@@ -119,7 +121,7 @@ public class ElementAPI {
         for (NamespacedKey key : getArmorSlotKeys()) {
             Integer freeSlots = item.getItemMeta().getPersistentDataContainer().get(key, PersistentDataType.INTEGER);
             if (freeSlots != null && freeSlots > 0) {
-                if (getItemRarity(item).equalsIgnoreCase("Uncommon")) {
+                if (getItemRarity(item).equalsIgnoreCase("Uncommon") || getItemRarity(item).equalsIgnoreCase("Rare")) {
                     freeSlots+=1;
                     if (!(freeSlots >1)) {
                         item.getItemMeta().getPersistentDataContainer().set(key, PersistentDataType.INTEGER, freeSlots + 1);
@@ -140,6 +142,8 @@ public class ElementAPI {
                 return "heart";
             }else if (component.equals(shieldEmoji)) {
                 return "shield";
+            }else if (component.equals(cleansingEmoji)) {
+                return "cleansing";
             }
         }else if (rarity.equalsIgnoreCase("Rare")) {
             Component component = lore.get(3);
@@ -148,8 +152,11 @@ public class ElementAPI {
                 return "heart";
             }else if (component.equals(shieldEmoji)) {
                 return "shield";
+            }else if (component.equals(cleansingEmoji)) {
+                return "cleansing";
             }
         }
         return "";
     }
+
 }

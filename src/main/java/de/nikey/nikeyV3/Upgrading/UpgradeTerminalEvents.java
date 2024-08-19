@@ -152,6 +152,10 @@ public class UpgradeTerminalEvents implements Listener {
                     player.playSound(player.getLocation(),Sound.BLOCK_ANVIL_USE,0.8F,0.8F);
                     player.closeInventory();
                 }
+                if (item == null){
+                    player.closeInventory();
+                    return;
+                }
 
                 String rarity = ElementAPI.getItemRarity(item);
 
@@ -173,7 +177,6 @@ public class UpgradeTerminalEvents implements Listener {
 
                                 applyUpgrade(item, null);
                                 event.getInventory().setItem(31,new ItemStack(Material.MAGENTA_STAINED_GLASS_PANE));
-                                player.sendMessage(Component.text("Item Updated").color(NamedTextColor.GREEN));
                             }
                             event.setCancelled(true);
                         }
@@ -338,12 +341,14 @@ public class UpgradeTerminalEvents implements Listener {
         }
 
 
-        if (ElementAPI.isArmorWithUpgradeSlot(item)) {
+        if (ElementAPI.isElementItem(item)) {
             String upgrades = ElementAPI.getUpgradesFromItem(item);
             if (upgrades.equalsIgnoreCase("heart")) {
                 upgradeInventory.setItem(31,UpgradingItems.HeartUpgradeShard());
             }else if (upgrades.equalsIgnoreCase("Shield")) {
                 upgradeInventory.setItem(31,UpgradingItems.ShieldUpgradeShard());
+            }else if (upgrades.equalsIgnoreCase("Cleansing")) {
+                upgradeInventory.setItem(31,UpgradingItems.CleansingUpgradeShard());
             }
         }
 
@@ -367,7 +372,8 @@ public class UpgradeTerminalEvents implements Listener {
             List<Component> lore = meta.lore();
             for (int i = 0; i < lore.size(); i++) {
                 Component loreComponent = lore.get(i);
-                if (loreComponent.equals(ElementAPI.defaultEmoji) || loreComponent.equals(ElementAPI.shieldEmoji) || loreComponent.equals(ElementAPI.heartEmoji)) {
+                if (loreComponent.equals(ElementAPI.defaultEmoji) || loreComponent.equals(ElementAPI.shieldEmoji) || loreComponent.equals(ElementAPI.heartEmoji)
+                        || loreComponent.equals(cleansingEmoji)) {
                     
                     if (type == null) {
                         lore.set(i, ElementAPI.defaultEmoji); // Ersetze den Upgrade-Slot mit dem Herz-Emoji
@@ -385,6 +391,12 @@ public class UpgradeTerminalEvents implements Listener {
                         break;
                     }else if (type.equalsIgnoreCase("Shield")){
                         lore.set(i, ElementAPI.shieldEmoji); // Ersetze den Upgrade-Slot mit dem Herz-Emoji
+                        meta.lore(lore);
+                        reduceFreeSlots(meta);
+                        item.setItemMeta(meta);
+                        break;
+                    }else if (type.equalsIgnoreCase("Cleansing")){
+                        lore.set(i, cleansingEmoji); // Ersetze den Upgrade-Slot mit dem Herz-Emoji
                         meta.lore(lore);
                         reduceFreeSlots(meta);
                         item.setItemMeta(meta);

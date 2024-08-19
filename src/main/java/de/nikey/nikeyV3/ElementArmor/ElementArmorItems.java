@@ -134,7 +134,7 @@ public class ElementArmorItems {
         lore.add((Component.text("Upgrade Slot: ").color(NamedTextColor.GRAY)).append(Component.text("1", NamedTextColor.GREEN)).decoration(TextDecoration.ITALIC,false));
         lore.add((Component.text("[۞]").color(NamedTextColor.DARK_GRAY)).decoration(TextDecoration.ITALIC,false));
         lore.add(Component.text(""));
-        lore.add((Component.text("Rare").color(NamedTextColor.DARK_GREEN).decoration(TextDecoration.ITALIC,false).decoration(TextDecoration.BOLD,true)));
+        lore.add((Component.text("Rare").color(NamedTextColor.BLUE).decoration(TextDecoration.ITALIC,false).decoration(TextDecoration.BOLD,true)));
         itemMeta.addAttributeModifier(Attribute.GENERIC_ARMOR,new AttributeModifier(new NamespacedKey(NikeyV3.getPlugin() , "extra.armor.feet.rare"), 4, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET));
         itemMeta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS,new AttributeModifier(new NamespacedKey(NikeyV3.getPlugin() , "extra.armor_toughness.feet.rare"), 3, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET));
         itemMeta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE,new AttributeModifier(new NamespacedKey(NikeyV3.getPlugin() , "extra.knockback_resistance.feet.rare"), 0.1, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET));
