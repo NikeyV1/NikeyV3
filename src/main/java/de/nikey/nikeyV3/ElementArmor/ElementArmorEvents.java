@@ -7,6 +7,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -50,6 +51,28 @@ public class ElementArmorEvents implements Listener {
     @EventHandler
     public void onPlayerArmorChange(PlayerArmorChangeEvent event) {
         updatePlayerHealth(event.getPlayer());
+        updateProtection(event.getPlayer());
+
+    }
+
+
+    private void updateProtection(Player player) {
+        ItemStack[] armorContents = player.getInventory().getArmorContents();
+        for (ItemStack item : armorContents) {
+            if (item == null)continue;
+            if (ElementAPI.isElementArmor(item)) {
+                if (item.getEnchantmentLevel(Enchantment.PROTECTION) == 5) {
+                    item.removeEnchantment(Enchantment.PROTECTION);
+                }
+                List<String> upgrades = ElementAPI.getUpgradesFromItem(item);
+                String rarity = ElementAPI.getItemRarity(item);
+                if (rarity.equalsIgnoreCase("Uncommon") || rarity.equalsIgnoreCase("Rare")) {
+                    if (upgrades.getFirst().equalsIgnoreCase("Protection")) {
+                        item.addUnsafeEnchantment(Enchantment.PROTECTION,5);
+                    }
+                }
+            }
+        }
     }
 
     private void updatePlayerHealth(Player player) {
@@ -58,9 +81,13 @@ public class ElementArmorEvents implements Listener {
 
         for (ItemStack item : armorContents) {
             if (item == null)continue;
-            if (ElementAPI.isElementItem(item)) {
-                if (ElementAPI.getUpgradesFromItem(item).equalsIgnoreCase("Heart")) {
-                    extraHearts += 4;
+            if (ElementAPI.isElementArmor(item)) {
+                List<String> upgrades = ElementAPI.getUpgradesFromItem(item);
+                String rarity = ElementAPI.getItemRarity(item);
+                if (rarity.equalsIgnoreCase("Uncommon") || rarity.equalsIgnoreCase("Rare")) {
+                    if (upgrades.getFirst().equalsIgnoreCase("Heart")) {
+                        extraHearts += 4;
+                    }
                 }
             }
         }
@@ -90,9 +117,13 @@ public class ElementArmorEvents implements Listener {
 
             for (ItemStack item : armorContents) {
                 if (item == null)continue;
-                if (ElementAPI.isElementItem(item)) {
-                    if (ElementAPI.getUpgradesFromItem(item).equalsIgnoreCase("Shield")) {
-                        extraShield += 1;
+                if (ElementAPI.isElementArmor(item)) {
+                    List<String> upgrades = ElementAPI.getUpgradesFromItem(item);
+                    String rarity = ElementAPI.getItemRarity(item);
+                    if (rarity.equalsIgnoreCase("Uncommon") || rarity.equalsIgnoreCase("Rare")) {
+                        if (upgrades.getFirst().equalsIgnoreCase("Shield")) {
+                            extraShield += 1;
+                        }
                     }
                 }
             }
@@ -132,9 +163,13 @@ public class ElementArmorEvents implements Listener {
 
             for (ItemStack item : armorContents) {
                 if (item == null)continue;
-                if (ElementAPI.isElementItem(item)) {
-                    if (ElementAPI.getUpgradesFromItem(item).equalsIgnoreCase("Cleansing")) {
-                        extraCleansing += 1;
+                if (ElementAPI.isElementArmor(item)) {
+                    List<String> upgrades = ElementAPI.getUpgradesFromItem(item);
+                    String rarity = ElementAPI.getItemRarity(item);
+                    if (rarity.equalsIgnoreCase("Uncommon") || rarity.equalsIgnoreCase("Rare")) {
+                        if (upgrades.getFirst().equalsIgnoreCase("Cleansing")) {
+                            extraCleansing += 1;
+                        }
                     }
                 }
             }

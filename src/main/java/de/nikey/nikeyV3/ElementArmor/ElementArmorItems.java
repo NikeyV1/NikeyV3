@@ -1,5 +1,6 @@
 package de.nikey.nikeyV3.ElementArmor;
 
+import de.nikey.nikeyV3.API.ElementAPI;
 import de.nikey.nikeyV3.NikeyV3;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -35,6 +36,7 @@ public class ElementArmorItems {
         itemMeta.setTrim(trim);
         itemMeta.setUnbreakable(true);
         itemMeta.getPersistentDataContainer().set(new NamespacedKey(NikeyV3.getPlugin(),"freeslots.feet.uncommon"), PersistentDataType.INTEGER ,1);
+        itemMeta.getPersistentDataContainer().set(ElementAPI.ELEMENT_ARMOR_KEY, PersistentDataType.BOOLEAN, true);
         List<Component> lore = new ArrayList<>();
         lore.add(Component.text(""));
         lore.add((Component.text("Upgrade Slot: ").color(NamedTextColor.GRAY)).append(Component.text("1", NamedTextColor.GREEN)).decoration(TextDecoration.ITALIC,false));
@@ -58,6 +60,7 @@ public class ElementArmorItems {
         itemMeta.setTrim(trim);
         itemMeta.setUnbreakable(true);
         itemMeta.getPersistentDataContainer().set(new NamespacedKey(NikeyV3.getPlugin(),"freeslots.legs.uncommon"), PersistentDataType.INTEGER ,1);
+        itemMeta.getPersistentDataContainer().set(ElementAPI.ELEMENT_ARMOR_KEY, PersistentDataType.BOOLEAN, true);
         List<Component> lore = new ArrayList<>();
         lore.add(Component.text(""));
         lore.add((Component.text("Upgrade Slot: ").color(NamedTextColor.GRAY)).append(Component.text("1", NamedTextColor.GREEN)).decoration(TextDecoration.ITALIC,false));
@@ -81,6 +84,7 @@ public class ElementArmorItems {
         itemMeta.setTrim(trim);
         itemMeta.setUnbreakable(true);
         itemMeta.getPersistentDataContainer().set(new NamespacedKey(NikeyV3.getPlugin(),"freeslots.chest.uncommon"), PersistentDataType.INTEGER ,1);
+        itemMeta.getPersistentDataContainer().set(ElementAPI.ELEMENT_ARMOR_KEY, PersistentDataType.BOOLEAN, true);
         List<Component> lore = new ArrayList<>();
         lore.add(Component.text(""));
         lore.add((Component.text("Upgrade Slot: ").color(NamedTextColor.GRAY)).append(Component.text("1", NamedTextColor.GREEN)).decoration(TextDecoration.ITALIC,false));
@@ -104,6 +108,7 @@ public class ElementArmorItems {
         itemMeta.setTrim(trim);
         itemMeta.setUnbreakable(true);
         itemMeta.getPersistentDataContainer().set(new NamespacedKey(NikeyV3.getPlugin(),"freeslots.head.uncommon"), PersistentDataType.INTEGER ,1);
+        itemMeta.getPersistentDataContainer().set(ElementAPI.ELEMENT_ARMOR_KEY, PersistentDataType.BOOLEAN, true);
         List<Component> lore = new ArrayList<>();
         lore.add(Component.text(""));
         lore.add((Component.text("Upgrade Slot: ").color(NamedTextColor.GRAY)).append(Component.text("1", NamedTextColor.GREEN)).decoration(TextDecoration.ITALIC,false));
@@ -128,6 +133,7 @@ public class ElementArmorItems {
         itemMeta.setTrim(trim);
         itemMeta.setUnbreakable(true);
         itemMeta.getPersistentDataContainer().set(new NamespacedKey(NikeyV3.getPlugin(),"freeslots.feet.rare"), PersistentDataType.INTEGER ,1);
+        itemMeta.getPersistentDataContainer().set(ElementAPI.ELEMENT_ARMOR_KEY, PersistentDataType.BOOLEAN, true);
         List<Component> lore = new ArrayList<>();
         lore.add(Component.text(""));
         lore.add((Component.text("Extra Armor: ").color(NamedTextColor.GRAY)).append(Component.text("+1", NamedTextColor.GREEN)).decoration(TextDecoration.ITALIC,false));
@@ -155,6 +161,7 @@ public class ElementArmorItems {
         itemMeta.setTrim(trim);
         itemMeta.setUnbreakable(true);
         itemMeta.getPersistentDataContainer().set(new NamespacedKey(NikeyV3.getPlugin(),"freeslots.legs.rare"), PersistentDataType.INTEGER ,1);
+        itemMeta.getPersistentDataContainer().set(ElementAPI.ELEMENT_ARMOR_KEY, PersistentDataType.BOOLEAN, true);
         List<Component> lore = new ArrayList<>();
         lore.add(Component.text(""));
         lore.add((Component.text("Extra Armor: ").color(NamedTextColor.GRAY)).append(Component.text("+1", NamedTextColor.GREEN)).decoration(TextDecoration.ITALIC,false));
@@ -182,6 +189,7 @@ public class ElementArmorItems {
         itemMeta.setTrim(trim);
         itemMeta.setUnbreakable(true);
         itemMeta.getPersistentDataContainer().set(new NamespacedKey(NikeyV3.getPlugin(),"freeslots.chest.rare"), PersistentDataType.INTEGER ,1);
+        itemMeta.getPersistentDataContainer().set(ElementAPI.ELEMENT_ARMOR_KEY, PersistentDataType.BOOLEAN, true);
         List<Component> lore = new ArrayList<>();
         lore.add(Component.text(""));
         lore.add((Component.text("Extra Armor: ").color(NamedTextColor.GRAY)).append(Component.text("+1", NamedTextColor.GREEN)).decoration(TextDecoration.ITALIC,false));
@@ -209,6 +217,7 @@ public class ElementArmorItems {
         itemMeta.setTrim(trim);
         itemMeta.setUnbreakable(true);
         itemMeta.getPersistentDataContainer().set(new NamespacedKey(NikeyV3.getPlugin(),"freeslots.head.rare"), PersistentDataType.INTEGER ,1);
+        itemMeta.getPersistentDataContainer().set(ElementAPI.ELEMENT_ARMOR_KEY, PersistentDataType.BOOLEAN, true);
         List<Component> lore = new ArrayList<>();
         lore.add(Component.text(""));
         lore.add((Component.text("Extra Armor: ").color(NamedTextColor.GRAY)).append(Component.text("+1", NamedTextColor.GREEN)).decoration(TextDecoration.ITALIC,false));
