@@ -68,4 +68,15 @@ public class UpgradingItems {
         return shard;
     }
 
+    public static ItemStack SpeedUpgradeShard() {
+        TextComponent name = Component.text().content("Speed Upgrade Shard").color(TextColor.fromHexString("#ecf01a")).decoration(TextDecoration.ITALIC,false).build();
+        ItemStack shard = new ItemStack(Material.ARMS_UP_POTTERY_SHERD);
+        ItemMeta itemMeta = shard.getItemMeta();
+        itemMeta.displayName(name);
+        itemMeta.getPersistentDataContainer().set(new NamespacedKey(NikeyV3.getPlugin(),"UpgradeShard.Speed"), PersistentDataType.BOOLEAN,true);
+        shard.setItemMeta(itemMeta);
+
+        return shard;
+    }
+
 }

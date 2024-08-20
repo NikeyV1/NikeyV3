@@ -44,6 +44,7 @@ public class GiveCMD implements CommandExecutor, TabCompleter
             stacks[1] = UpgradingItems.ShieldUpgradeShard();
             stacks[2] = UpgradingItems.CleansingUpgradeShard();
             stacks[3] = UpgradingItems.ProtectionUpgradeShard();
+            stacks[4] = UpgradingItems.SpeedUpgradeShard();
             player.getInventory().addItem(stacks);
             player.sendMessage("§aDone!");
             return true;
