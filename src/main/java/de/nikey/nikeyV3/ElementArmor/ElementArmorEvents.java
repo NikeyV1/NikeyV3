@@ -26,11 +26,10 @@ import java.util.List;
 
 public class ElementArmorEvents implements Listener {
 
-
-
     @EventHandler(ignoreCancelled = true)
     public void onPlayerJoin(PlayerJoinEvent event) {
         updatePlayerHealth(event.getPlayer());
+        updatePlayerSpeed(event.getPlayer());
     }
 
     @EventHandler(ignoreCancelled = true)
@@ -44,17 +43,18 @@ public class ElementArmorEvents implements Listener {
             @Override
             public void run() {
                 updatePlayerHealth(event.getPlayer());
+                updatePlayerSpeed(event.getPlayer());
             }
         }.runTaskLater(NikeyV3.getPlugin(), 1L); // Delay to ensure health is applied after respawn
     }
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onPlayerArmorChange(PlayerArmorChangeEvent event) {
         updatePlayerHealth(event.getPlayer());
         updateProtection(event.getPlayer());
+        updatePlayerSpeed(event.getPlayer());
 
     }
-
 
     private void updateProtection(Player player) {
         ItemStack[] armorContents = player.getInventory().getArmorContents();
@@ -224,4 +224,26 @@ public class ElementArmorEvents implements Listener {
             }
         }
     }
+
+    private void updatePlayerSpeed(Player player) {
+        float baseSpeed = 0.2f;
+        float additionalSpeed = 0.0f;
+        ItemStack[] armorContents = player.getInventory().getArmorContents();
+
+        for (ItemStack item : armorContents) {
+            if (item == null) continue;
+            if (ElementAPI.isElementArmor(item)) {
+                List<String> upgrades = ElementAPI.getUpgradesFromItem(item);
+                String rarity = ElementAPI.getItemRarity(item);
+                if (rarity.equalsIgnoreCase("Uncommon") || rarity.equalsIgnoreCase("Rare")) {
+                    if (upgrades.getFirst().equalsIgnoreCase("Speed")) {
+                        additionalSpeed += 0.04f;
+                    }
+                }
+            }
+        }
+
+        player.setWalkSpeed(Math.min(baseSpeed + additionalSpeed, 1.0f));
+    }
+
 }

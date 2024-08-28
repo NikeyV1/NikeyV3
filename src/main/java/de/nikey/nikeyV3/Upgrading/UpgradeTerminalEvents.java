@@ -5,11 +5,9 @@ import de.nikey.nikeyV3.NikeyV3;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -378,7 +376,7 @@ public class UpgradeTerminalEvents implements Listener {
             for (int i = 0; i < lore.size(); i++) {
                 Component loreComponent = lore.get(i);
                 if (loreComponent.equals(ElementAPI.defaultEmoji) || loreComponent.equals(ElementAPI.shieldEmoji) || loreComponent.equals(ElementAPI.heartEmoji)
-                        || loreComponent.equals(cleansingEmoji) || loreComponent.equals(protectionEmoji)) {
+                        || loreComponent.equals(cleansingEmoji) || loreComponent.equals(protectionEmoji) || loreComponent.equals(speedEmoji)) {
                     
                     if (type == null) {
                         lore.set(i, ElementAPI.defaultEmoji); // Ersetze den Upgrade-Slot mit dem Herz-Emoji
@@ -408,6 +406,12 @@ public class UpgradeTerminalEvents implements Listener {
                         break;
                     }else if (type.equalsIgnoreCase("Protection")){
                         lore.set(i, protectionEmoji); // Ersetze den Upgrade-Slot mit dem Herz-Emoji
+                        meta.lore(lore);
+                        reduceFreeSlots(meta);
+                        item.setItemMeta(meta);
+                        break;
+                    }else if (type.equalsIgnoreCase("Speed")){
+                        lore.set(i, speedEmoji); // Ersetze den Upgrade-Slot mit dem Herz-Emoji
                         meta.lore(lore);
                         reduceFreeSlots(meta);
                         item.setItemMeta(meta);

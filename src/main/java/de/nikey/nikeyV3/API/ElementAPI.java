@@ -22,6 +22,7 @@ public class ElementAPI {
     public static final Component shieldEmoji = Component.text("[🛡]").color(TextColor.fromHexString("#227b7d")).decoration(TextDecoration.ITALIC, false);
     public static final Component cleansingEmoji = Component.text("[✚]").color(TextColor.fromHexString("#881e96")).decoration(TextDecoration.ITALIC, false);
     public static final Component protectionEmoji = Component.text("[📜]").color(TextColor.fromHexString("#2A5ADB")).decoration(TextDecoration.ITALIC,false);
+    public static final Component speedEmoji = Component.text("[⚡]").color(TextColor.fromHexString("#eaed4a")).decoration(TextDecoration.ITALIC,false);
 
     public static final NamespacedKey ELEMENT_ARMOR_KEY = new NamespacedKey(NikeyV3.getPlugin(), "element_item");
 
@@ -52,6 +53,8 @@ public class ElementAPI {
         }else if (isUpgradeShardType(item, "Cleansing")) {
             return true;
         }else if (isUpgradeShardType(item, "Protection")) {
+            return true;
+        }else if (isUpgradeShardType(item, "Speed")) {
             return true;
         }else {
             return false;
@@ -174,6 +177,9 @@ public class ElementAPI {
         }
         if (thirdLineString.contains("[📜]")) {
             upgrades.add("Protection");
+        }
+        if (thirdLineString.contains("[⚡]")) {
+            upgrades.add("Speed");
         }
 
         // Rückgabe der gefundenen Upgrades
