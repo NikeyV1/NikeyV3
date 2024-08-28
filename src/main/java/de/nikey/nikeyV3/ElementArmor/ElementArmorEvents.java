@@ -237,7 +237,7 @@ public class ElementArmorEvents implements Listener {
                 String rarity = ElementAPI.getItemRarity(item);
                 if (rarity.equalsIgnoreCase("Uncommon") || rarity.equalsIgnoreCase("Rare")) {
                     if (upgrades.getFirst().equalsIgnoreCase("Speed")) {
-                        additionalSpeed += 0.04f;
+                        additionalSpeed += 0.035f;
                     }
                 }
             }

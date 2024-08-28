@@ -165,7 +165,7 @@ public class UpgradeTerminalEvents implements Listener {
                                 event.setCurrentItem(event.getCursor());
 
                                 String shardType = getShardType(event.getCursor());
-                                applyUpgrade(item, shardType);
+                                applyUpgrade(item, shardType,1);
 
                                 event.setCursor(null);
                             }
@@ -174,12 +174,14 @@ public class UpgradeTerminalEvents implements Listener {
                             if (event.getCursor().getType() == Material.AIR) {
                                 event.getView().setCursor(clickedItem);
 
-                                applyUpgrade(item, null);
-                                event.getInventory().setItem(31,new ItemStack(Material.MAGENTA_STAINED_GLASS_PANE));
+                                applyUpgrade(item, null,1);
+                                event.getInventory().setItem(event.getSlot(),new ItemStack(Material.MAGENTA_STAINED_GLASS_PANE));
                             }
                             event.setCancelled(true);
                         }
                     }
+                }else {
+                    int slot = event.getSlot();
                 }
             }
         }
@@ -369,7 +371,7 @@ public class UpgradeTerminalEvents implements Listener {
 
 
 
-    private void applyUpgrade(ItemStack item, String type) {
+    private void applyUpgrade(ItemStack item, String type, int slots) {
         ItemMeta meta = item.getItemMeta();
         if (meta != null && meta.hasLore()) {
             List<Component> lore = meta.lore();
